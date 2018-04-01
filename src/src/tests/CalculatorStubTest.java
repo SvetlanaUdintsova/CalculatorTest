@@ -1,4 +1,4 @@
-package org.apache.axis2.CalculatorTest;
+package tests;
 
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.CalculatorTest.CalculatorStub;
