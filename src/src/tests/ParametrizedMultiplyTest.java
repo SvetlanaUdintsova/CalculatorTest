@@ -13,6 +13,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
+//TODO Rewrite test using JUnitParams library
 @RunWith(Parameterized.class)
 public class ParametrizedMultiplyTest {
    private Integer inputNumber1;
