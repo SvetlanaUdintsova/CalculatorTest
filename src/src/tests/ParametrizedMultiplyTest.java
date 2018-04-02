@@ -19,23 +19,16 @@ public class ParametrizedMultiplyTest {
    private Integer inputNumber2;
    private Integer expectedResult;
    private CalculatorStub stub;
-   private MultiplyResponse multiplyResponse;
    
    @Before
    public void initialize() throws AxisFault {
-      stub = new CalculatorStub();
+      stub = new CalculatorStub("http://www.dneonline.com/calculator.asmx");
    }
-
-   // Each parameter should be placed as an argument here
-   // Every time runner triggers, it will pass the arguments
-   // from parameters we defined in primeNumbers() method
 	
    public ParametrizedMultiplyTest (Integer inputNumber1, Integer inputNumber2, Integer expectedResult) {
 	   this.inputNumber1 = inputNumber1;
 	   this.inputNumber2 = inputNumber2;
 	   this.expectedResult = expectedResult;
-	   
-
    }
 
    @Parameterized.Parameters
@@ -52,11 +45,15 @@ public class ParametrizedMultiplyTest {
    // This test will run 4 times since we have 5 parameters defined
    @Test
    public void testMultiply() throws Exception {
+	   //Arrange
 	   Multiply multiply = new Multiply();
 	   multiply.setIntA(inputNumber1);
 	   multiply.setIntB(inputNumber2);
-	   multiplyResponse = stub.multiply(multiply);
-      System.out.println(" : " + multiplyResponse.getMultiplyResult());
-      assertEquals((int)expectedResult, multiplyResponse.getMultiplyResult());
+	   
+	   //Act
+	   MultiplyResponse multiplyResponse = stub.multiply(multiply);
+	   
+	   //Assert
+       assertEquals((int)expectedResult, multiplyResponse.getMultiplyResult());
    }
 } 	
